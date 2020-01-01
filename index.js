@@ -20,6 +20,17 @@ mongoose.connect(process.env.MONGO, {
 
 // register middlewares
 app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin,Content-Type,Content-Length, Authorization, Accept,X-Requested-With"
+  );
+  res.header("Access-Control-Allow-Methods", "POST,GET,DELETE");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 // app.use('/category', category);
 app.use('/', blog);
 app.use('/user', user);
