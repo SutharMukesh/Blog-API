@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors')
+
 // const product = require('./routes/product');
 const blog = require('./routes/blog');
 const user = require('./routes/user');
@@ -18,6 +20,9 @@ mongoose.connect(process.env.MONGO, {
   useUnifiedTopology: true,
 });
 
+app.use(cors({
+  exposedHeaders: ['x-auth-header'],
+}))
 // register middlewares
 app.use(bodyParser.json());
 
