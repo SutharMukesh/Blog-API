@@ -12,10 +12,10 @@ app.post('/signup', async (req, res) => {
     await user.save();
     const token = await user.generateAuthToken();
     logger.info(`User: user created for - ${JSON.stringify(req.body)}`);
-    res.header('x-auth-header', token).status(200).send({message:'Signup successful.'});
+    res.header('x-auth-header', token).status(200).send({ message: 'Signup successful.' });
   } catch (error) {
     logger.error(`User: Error while creating user: ${((error.stack) ? error.stack : error)}`);
-    res.status(401).send({message:`Error while creating user: ${error}`});
+    res.status(401).send({ message: `Error while creating user: ${error}` });
   }
 });
 
@@ -30,10 +30,10 @@ app.post('/signin', async (req, res) => {
     }
     const token = await user.generateAuthToken();
     logger.info(`User/login: login for email: ${email} successful`);
-    return res.header('x-auth-header', token).status(200).send({message:'Login successful.'});
+    return res.header('x-auth-header', token).status(200).send({ data: { name: user.name }, message: 'Login successful.' });
   } catch (error) {
     logger.error(`User/login: Error while login user ${req.body.email}: ${((error.stack) ? error.stack : error)}`);
-    res.status(401).send({message:`User/login: Error while login user ${req.body.email}: ${error}`});
+    res.status(401).send({ message: `User/login: Error while login user ${req.body.email}: ${error}` });
   }
   return null;
 });
