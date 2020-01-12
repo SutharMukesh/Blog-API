@@ -17,7 +17,6 @@ global.logger = logger;
 mongoose.connect(process.env.MONGO, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true,
 });
 
 app.use(cors({
