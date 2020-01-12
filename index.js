@@ -40,4 +40,4 @@ app.use(function (req, res, next) {
 app.use('/', blog);
 app.use('/user', user);
 
-app.listen(process.env.PORT, () => logger.info(`Server: Blog API app listening on port ${3000}!`));
+app.listen(process.env.PORT, () => logger.info(`Server: Blog API app listening on port ${process.env.PORT}!`));
